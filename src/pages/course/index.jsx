@@ -1,5 +1,5 @@
-import CourseOffline from "./\bcomponent/offline";
-import CourseOnline from "./\bcomponent/online";
+import CourseOffline from "./component/offline";
+import CourseOnline from "./component/online";
 
 
 export default function CoursePage() {
