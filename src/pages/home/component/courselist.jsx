@@ -1,5 +1,5 @@
 import React from "react";
-import CourseItem from "../../../component/CourseItem";
+import {CourseItem} from "../../../component/CourseItem";
 
 export default function CourseList() {
   return (

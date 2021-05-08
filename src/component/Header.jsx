@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 export function Header() {
   return (
     <>
       <header id="header">
         <div className="wrap">
-          <div className="menu-hambeger">
+          <div className="menu-hambeger" >
             <div className="button">
               <span />
               <span />
@@ -11,19 +13,19 @@ export function Header() {
             </div>
             <span className="text">menu</span>
           </div>
-          <a href="#" className="logo">
+          <Link to="/" className="logo">
             <img src="/assets/img/logo.svg" alt="" />
             <h1>CFD</h1>
-          </a>
+          </Link>
           <div className="right">
             <div className="have-login">
               <div className="account">
-                <a href="#" className="info">
+                <Link to="/profile" className="info">
                   <div className="name">Trần Lê Trọng Nghĩa</div>
                   <div className="avatar">
                     <img src="/assets/img/avt.png" alt="" />
                   </div>
-                </a>
+                </Link>
               </div>
               <div className="hamberger"></div>
               <div className="sub">
@@ -38,23 +40,23 @@ export function Header() {
       <nav className="nav">
         <ul>
           <li className="li_login">
-            <a href="#">Đăng nhập</a>
-            <a href="#">Đăng ký</a>
+            <Link href="#">Đăng nhập</Link>
+            <Link href="#">Đăng ký</Link>
           </li>
           <li className="active">
-            <a href="#">Trang chủ</a>
+            <Link to="/">Trang chủ</Link>
           </li>
           <li>
-            <a href="#">CFD Team</a>
+            <Link to="/team">CFD Team</Link>
           </li>
           <li>
-            <a href="#">Khóa Học</a>
+            <Link to="/course">Khóa Học</Link>
           </li>
           <li>
-            <a href="#">Dự Án</a>
+            <Link to="/project">Dự Án</Link>
           </li>
           <li>
-            <a href="#">Liên hệ</a>
+            <Link to="/contact">Liên hệ</Link>
           </li>
         </ul>
       </nav>

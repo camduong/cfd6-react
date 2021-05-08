@@ -1,4 +1,5 @@
-import CourseItem from "../../../component/CourseItem";
+import { CourseItem } from "../../../component/CourseItem";
+
 
 export default function CourseOffline() {
   return (

@@ -1,4 +1,4 @@
-export default function CourseItem({status, img, title, desc, teacher, teach_ava }) {
+export function CourseItem({status, img, title, desc, teacher, teach_ava }) {
   return (
     <div className="col-md-4 course">
       <div className="wrap">
