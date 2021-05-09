@@ -24,27 +24,27 @@ export default function Register() {
   function onSubmit(){
     let errorObj = {}
     if(!form.name.trim()){
-      errorObj.name = "Ten khong duoc bo trong"
+      errorObj.name = "Tên không được bỏ trống"
     // }else{
     //   console.log(form.name.trim())
     //   form.name.trim().replace(/ +/g, " ")
     }
     if(!form.phone.trim()){
-      errorObj.phone = "Dien thoai khong duoc bo trong"
+      errorObj.phone = "Điện thoại không được bỏ trống"
     } else if(!/(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(form.phone.trim())){
-      errorObj.phone = 'Dien thoai khong dung dinh dang'
+      errorObj.phone = 'Điện thoại không đúng định dạng'
     }
 
     if(!form.email.trim()){
-      errorObj.email = "Email khong duoc bo trong"
+      errorObj.email = "Email không được bỏ trống"
     }else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email.trim())){
-      errorObj.email = 'Email khong dung dinh dang'
+      errorObj.email = 'Email không đúng định dạng'
     }
 
     if(!form.url.trim()){
-      errorObj.url = "Url khong duoc bo trong"
+      errorObj.url = "Url không được bỏ trống"
     }else if(!/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/.test(form.url.trim())){
-      errorObj.url = "Url khong dung dinh dang"
+      errorObj.url = "Urlkhông đúng định dạng"
 
     }
     if(Object.keys(errorObj).length === 0){
@@ -53,11 +53,12 @@ export default function Register() {
       setError(errorObj)
     }
   }
-  
+
   function inputOnChange(e){
     let name = e.target.name
     let value = e.target.value
 
+    onSubmit()
     setForm({
       ...form,
       [name]: value
@@ -69,7 +70,7 @@ export default function Register() {
       <section>
         <div className="container">
           <div className="wrap container">
-            {/* <div className="main-sub-title">ĐĂNG KÝ</div>
+            <div className="main-sub-title">ĐĂNG KÝ</div>
             <h1 className="main-title">Thực chiến front-end căn bản </h1>
             <div className="main-info">
               <div className="date">
@@ -81,68 +82,71 @@ export default function Register() {
               <div className="time">
                 <strong>Học phí:</strong> 6.000.000 VND
               </div>
-            </div> */}
+            </div>
             <div className="form">
               <label>
-                <p>
-                  Họ và tên<span>*</span>
-                </p>
-                <input type="text" value={form.name} onChange={inputOnChange} name='name' placeholder="Họ và tên bạn" />
+                <div className="label-group">
+                  <p>Họ và tên<span>*</span></p>
+                  <input type="text" value={form.name} onChange={inputOnChange} name='name' placeholder="Họ và tên bạn" />
+                </div>
                 {
                   error.name && <p className="error-text">{error.name}</p>
                 }
               </label>
               <label>
-                <p>
-                  Số điện thoại<span>*</span>
-                </p>
-                <input type="text" value={form.phone} onChange={inputOnChange} name='phone' placeholder="Số điện thoại" />
+                <div className="label-group">
+                  <p>Số điện thoại<span>*</span></p>
+                  <input type="text" value={form.phone} onChange={inputOnChange} name='phone' placeholder="Số điện thoại" />
+                </div>
                 {
                   error.phone && <p className="error-text">{error.phone}</p>
                 }
               </label>
               <label>
-                <p>
-                  Email<span>*</span>
-                </p>
-                <input type="text" value={form.email} onChange={inputOnChange} name='email' placeholder="Email của bạn" />
+                <div className="label-group">
+                  <p>Email<span>*</span></p>
+                  <input type="text" value={form.email} onChange={inputOnChange} name='email' placeholder="Email của bạn" />
+                </div>
                 {
                   error.email && <p className="error-text">{error.email}</p>
                 }
               </label>
               <label>
-                <p>
-                  URL Facebook<span>*</span>
-                </p>
-                <input type="text" value={form.url} onChange={inputOnChange} name='url' placeholder="https://facebook.com" />
+                <div className="label-group">
+                  <p>URL Facebook<span>*</span></p>
+                  <input type="text" value={form.url} onChange={inputOnChange} name='url' placeholder="https://facebook.com" />
+                </div>
                 {
                   error.url && <p className="error-text">{error.url}</p>
                 }
               </label>
-              {/* <label className="disable">
-                <p>Sử dụng COIN</p>
-                <div className="checkcontainer">
-                  Hiện có <strong>300 COIN</strong>
-                  <input type="checkbox" defaultChecked="checked" />
-                  <span className="checkmark" />
-                </div>
-              </label> */}
-              {/* <label>
-                <p>Hình thức thanh toán</p>
-                <div className="select">
-                  <div className="head">Chuyển khoản</div>
-                  <div className="sub">
-                    <a href="#">Chuyển khoản</a>
-                    <a href="#">Thanh toán tiền mặt</a>
+              <label className="disable">
+                <div className="label-group">
+                  <p>Sử dụng COIN</p>
+                  <div className="checkcontainer">
+                    Hiện có <strong>300 COIN</strong>
+                    <input type="checkbox" defaultChecked="checked" />
+                    <span className="checkmark" />
                   </div>
                 </div>
-              </label> */}
+              </label>
               <label>
-                <p>Ý kiến cá nhân</p>
-                <input
-                  type="text" name='note' value={form.note} onChange={inputOnChange}
-                  placeholder="Mong muốn cá nhân và lịch bạn có thể học."
-                />
+                <div className="label-group">
+                  <p>Hình thức thanh toán</p>
+                  <div className="select">
+                    <div className="head">Chuyển khoản</div>
+                    <div className="sub">
+                      <a href="#">Chuyển khoản</a>
+                      <a href="#">Thanh toán tiền mặt</a>
+                    </div>
+                  </div>
+                </div>
+              </label>
+              <label>
+                <div className="label-group">
+                  <p>Ý kiến cá nhân</p>
+                  <input type="text" name='note' value={form.note} onChange={inputOnChange} placeholder="Mong muốn cá nhân và lịch bạn có thể học." />
+                </div>
               </label>
               <div className="btn main rect" onClick={onSubmit}>đăng ký</div>
             </div>

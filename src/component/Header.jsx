@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export function Header() {
+  function toggleNav(){
+    document.body.classList.toggle('menu-is-show')
+  }
   return (
     <>
       <header id="header">
         <div className="wrap">
-          <div className="menu-hambeger" >
+          <div className="menu-hambeger" onClick={toggleNav}>
             <div className="button">
               <span />
               <span />
@@ -29,9 +32,9 @@ export function Header() {
               </div>
               <div className="hamberger"></div>
               <div className="sub">
-                <a href="#">Khóa học của tôi</a>
-                <a href="#">Thông tin tài khoản</a>
-                <a href="#">Đăng xuất</a>
+                <Link to="/profile">Thông tin tài khoản</Link>
+                <Link to="/profile/mycourse">Khóa học của tôi</Link>
+                <Link to="#">Đăng xuất</Link>
               </div>
             </div>
           </div>
@@ -43,20 +46,20 @@ export function Header() {
             <Link href="#">Đăng nhập</Link>
             <Link href="#">Đăng ký</Link>
           </li>
-          <li className="active">
-            <Link to="/">Trang chủ</Link>
+          <li>
+            <NavLink exact to="/">Trang chủ</NavLink>
           </li>
           <li>
-            <Link to="/team">CFD Team</Link>
+            <NavLink to="/team">CFD Team</NavLink>
           </li>
           <li>
-            <Link to="/course">Khóa Học</Link>
+            <NavLink to="/course">Khóa Học</NavLink>
           </li>
           <li>
-            <Link to="/project">Dự Án</Link>
+            <NavLink to="/project">Dự Án</NavLink>
           </li>
           <li>
-            <Link to="/contact">Liên hệ</Link>
+            <NavLink to="/contact">Liên hệ</NavLink>
           </li>
         </ul>
       </nav>

@@ -8,7 +8,7 @@ export function Coin() {
           </h3>
           <div className="coininfo__box-ct">
             <div>
-              <img src="img/cfd-coin.png" alt="" />
+              <img src="/assets/img/cfd-coin.png" alt="" />
               <p>
                 Bạn có <strong>300</strong> COIN
               </p>

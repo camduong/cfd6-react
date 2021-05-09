@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {CourseItem} from "../../component/CourseItem";
 
 export default function CourseDetail() {
@@ -15,7 +16,7 @@ export default function CourseDetail() {
                 <strong>Thời lượng:</strong> 18 buổi
               </div>
             </div>
-            <div className="btn white round" style={{"--color-btn":"#70b6f1"}}>đăng ký</div>
+            <Link to='/register' className="btn white round" style={{"--color-btn":"#70b6f1"}}>đăng ký</Link>
           </div>
         </div>
         <div className="bottom">

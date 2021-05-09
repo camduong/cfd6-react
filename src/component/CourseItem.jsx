@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 export function CourseItem({status, img, title, desc, teacher, teach_ava }) {
   return (
     <div className="col-md-4 course">
       <div className="wrap">
-        <a className="cover" href="#">
+        <Link to='/course/course-detail' className="cover">
           <img src={img} alt="" />
           {
             status === "da-ket-thuc" ? <span className="badge b1">Đã kết thúc</span> :
@@ -25,9 +27,9 @@ export function CourseItem({status, img, title, desc, teacher, teach_ava }) {
               <img src="/assets/img/icon-viewmore.svg" alt="" />
             </div>
           </div>
-        </a>
+        </Link>
         <div className="info">
-          <a className="name" href="#">{title}</a>
+          <Link to='/course/course-detail' className="name">{title}</Link>
           <p className="des">{desc}</p>
         </div>
         <div className="bottom">

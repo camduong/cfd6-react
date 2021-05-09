@@ -1,32 +1,11 @@
+import { Link } from "react-router-dom";
+
 export default function Action() {
   return (
-    <section className="section-gallery">
-      <div className="textbox">
-        <h2 className="main-title">Chúng ta là một team</h2>
-      </div>
-      <div className="list">
-        <img data-flickity-lazyload="/assets/img/img_team1.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team2.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team3.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team4.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team3.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team4.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team1.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team2.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team3.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team4.png" alt="" />
-        <img data-flickity-lazyload="/assets/img/img_team3.png" alt="" />
-        <div className="item carousel-cell">
-          <img data-flickity-lazyload="/assets/img/img_team4.png" alt="" />
-        </div>
-      </div>
-      <div className="controls">
-        <div className="btn_ctr prev" />
-        <span>Trượt qua</span>
-        <div className="timeline">
-          <div className="process" />
-        </div>
-        <div className="btn_ctr next" />
+    <section className="section-action">
+      <div className="container">
+        <h3>Bạn đã sẵn sàng trở thành chiến binh tiếp theo của Team CFD chưa?</h3>
+        <Link to='/register' className="btn main round bg-white">Đăng ký</Link>
       </div>
     </section>
   );

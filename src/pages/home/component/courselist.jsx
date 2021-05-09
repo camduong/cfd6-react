@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {CourseItem} from "../../../component/CourseItem";
 
 export default function CourseList() {
@@ -62,6 +63,9 @@ export default function CourseList() {
               teacher="Trần Nghĩa"
               teach_ava="/assets/img/avt.png"
             />
+          </div>
+          <div className="pt-3 text-center">
+            <Link to='/course' className='btn main round'>Xem thêm</Link>
           </div>
         </div>
       </section>
