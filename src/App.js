@@ -28,7 +28,7 @@ function App() {
           <Route path='/team' component={Team} />
           <Route path='/project' component={Project} />
           <Route exact path='/course' component={CoursePage} />
-          <Route path='/course/course-detail' component={CourseDetail} />
+          <Route path='/course/:slug' component={CourseDetail} />
           <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
           <Route path='/contact' component={Contact} />

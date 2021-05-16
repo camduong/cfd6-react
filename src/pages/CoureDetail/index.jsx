@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {CourseItem} from "../../component/CourseItem";
 
 export default function CourseDetail() {
+  let slug = useParams()
+  console.log(slug)
   return (
     <main className="course-detail" id="main">
       <section className="banner style2" style={{'--background': '#cde6fb'}}>

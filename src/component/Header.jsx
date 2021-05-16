@@ -65,5 +65,5 @@ export function Header() {
       </nav>
       <div className="overlay_nav" />
     </>
-  );
+  )
 }
