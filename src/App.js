@@ -14,6 +14,7 @@ import Project from "./pages/Project";
 import Register from "./pages/Register";
 import Team from './pages/Team'
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
 
 // style
 import './scss/style.sass';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/register' component={Register} />
           <Route path='/profile' component={Profile} />
           <Route path='/contact' component={Contact} />
+          <Route path='/faq' component={FAQ} />
           <Route component={Page404} />
         </Switch>
         <Footer />

@@ -1,9 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
+import useDelayLink from "../hook/useDelayLink";
 
 export function Header() {
   function toggleNav(){
     document.body.classList.toggle('menu-is-show')
   }
+  let delayLink = useDelayLink()
   return (
     <>
       <header id="header">
@@ -16,14 +18,14 @@ export function Header() {
             </div>
             <span className="text">menu</span>
           </div>
-          <Link to="/" className="logo">
+          <Link to="/" className="logo" onClick={delayLink}>
             <img src="/assets/img/logo.svg" alt="" />
             <h1>CFD</h1>
           </Link>
           <div className="right">
             <div className="have-login">
               <div className="account">
-                <Link to="/profile" className="info">
+                <Link onClick={delayLink} to="/profile" className="info">
                   <div className="name">Trần Lê Trọng Nghĩa</div>
                   <div className="avatar">
                     <img src="/assets/img/avt.png" alt="" />
@@ -32,9 +34,9 @@ export function Header() {
               </div>
               <div className="hamberger"></div>
               <div className="sub">
-                <Link to="/profile">Thông tin tài khoản</Link>
-                <Link to="/profile/mycourse">Khóa học của tôi</Link>
-                <Link to="#">Đăng xuất</Link>
+                <Link onClick={delayLink} to="/profile">Thông tin tài khoản</Link>
+                <Link onClick={delayLink} to="/profile/mycourse">Khóa học của tôi</Link>
+                <Link onClick={delayLink} to="#">Đăng xuất</Link>
               </div>
             </div>
           </div>
@@ -43,23 +45,26 @@ export function Header() {
       <nav className="nav">
         <ul>
           <li className="li_login">
-            <Link href="#">Đăng nhập</Link>
-            <Link href="#">Đăng ký</Link>
+            <Link onClick={delayLink} href="#">Đăng nhập</Link>
+            <Link onClick={delayLink} href="#">Đăng ký</Link>
           </li>
           <li>
-            <NavLink exact to="/">Trang chủ</NavLink>
+            <NavLink onClick={delayLink} exact to="/">Trang chủ</NavLink>
           </li>
           <li>
-            <NavLink to="/team">CFD Team</NavLink>
+            <NavLink onClick={delayLink} to="/team">CFD Team</NavLink>
           </li>
           <li>
-            <NavLink to="/course">Khóa Học</NavLink>
+            <NavLink onClick={delayLink} to="/course">Khóa Học</NavLink>
           </li>
           <li>
-            <NavLink to="/project">Dự Án</NavLink>
+            <NavLink onClick={delayLink} to="/project">Dự Án</NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Liên hệ</NavLink>
+            <NavLink onClick={delayLink} to="/contact">Liên hệ</NavLink>
+          </li>
+          <li>
+            <NavLink onClick={delayLink} to="/faq">Câu Hỏi Thường Gặp</NavLink>
           </li>
         </ul>
       </nav>

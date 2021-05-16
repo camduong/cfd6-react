@@ -1,4 +1,15 @@
+import { Link } from "react-router-dom";
+import useDelayLink from "../hook/useDelayLink";
+
 export function Footer() {
+  let delayLink = useDelayLink()
+  function goTop(e){
+    e.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }
   return (
     <footer id="footer">
       <div className="container">
@@ -28,25 +39,25 @@ export function Footer() {
             <nav>
               <ul>
                 <li>
-                  <a href="#">Trang chủ</a>
+                  <Link onClick={delayLink} to="#">Trang chủ</Link>
                 </li>
                 <li>
-                  <a href="#">Khóa học</a>
+                  <Link onClick={delayLink} to="#">Khóa học</Link>
                 </li>
                 <li>
-                  <a href="#">Thanh toán</a>
+                  <Link onClick={delayLink} to="#">Thanh toán</Link>
                 </li>
                 <li>
-                  <a href="#">Điều khoản</a>
+                  <Link onClick={delayLink} to="#">Điều khoản</Link>
                 </li>
               </ul>
             </nav>
           </div>
         </div>
-        <a href="#" className="back-to-top">
+        <Link to='#' onClick={goTop} className="back-to-top">
           <div className="line" />
           CUỘN LÊN
-        </a>
+        </Link>
       </div>
       <div className="copy-right">
         <div className="container">
