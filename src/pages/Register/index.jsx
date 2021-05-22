@@ -1,68 +1,63 @@
 import { useState } from "react";
+import useFormValidate from "../../hook/useFormValidate";
 
 export default function Register() {
 
-  // let [name,setName] = useState('')
-  // let [phone,setPhone] = useState('')
-  // let [email,setEmail] = useState('')
-  // let [url,setUrl] = useState('')
-  let [form,setForm] = useState({
+  let { form, error, inputChange, check } = useFormValidate({
     name: '',
     phone: '',
     email: '',
     url: '',
     note: ''
+  }, {
+    rule: {
+      name: {
+        required: true
+      },
+      phone: {
+        required: true,
+        pattern: "phone"
+      },
+      email: {
+        required: true,
+        pattern: 'email'
+      },
+      url: {
+        required: true,
+        pattern: 'url'
+      },
+      note: {
+        required: true
+      }
+    },
+    message: {
+      name: {
+        required: 'Họ và tên không được để trống'
+      },
+      phone: {
+        required: 'Số điện thoại không được để trống',
+        pattern: 'Phải là số điện thoại VN'
+      },
+      email:{
+        required: "Email không được để trống",
+        pattern: 'Email phải đúng định dạng'
+      },
+      url:{
+        required: "Url không được để trống",
+        pattern: 'Phải là link Facebook'
+      },
+      note:{
+        required: "Ý kiền không được để trống"
+      }
+    }
+
   })
+  function onSubmit() {
+    let errorObj = check()
 
-  let [error, setError] = useState({
-    name: '',
-    phone: '',
-    email: '',
-    url: '',
-    note: ''
-  })
-  function onSubmit(){
-    let errorObj = {}
-    if(!form.name.trim()){
-      errorObj.name = "Tên không được bỏ trống"
-    // }else{
-    //   console.log(form.name.trim())
-    //   form.name.trim().replace(/ +/g, " ")
-    }
-    if(!form.phone.trim()){
-      errorObj.phone = "Điện thoại không được bỏ trống"
-    } else if(!/(84|0[3|5|7|8|9])+([0-9]{8})\b/.test(form.phone.trim())){
-      errorObj.phone = 'Điện thoại không đúng định dạng'
-    }
-
-    if(!form.email.trim()){
-      errorObj.email = "Email không được bỏ trống"
-    }else if(!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email.trim())){
-      errorObj.email = 'Email không đúng định dạng'
-    }
-
-    if(!form.url.trim()){
-      errorObj.url = "Url không được bỏ trống"
-    }else if(!/^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/.test(form.url.trim())){
-      errorObj.url = "Urlkhông đúng định dạng"
-
-    }
-    if(Object.keys(errorObj).length === 0){
+    if (Object.keys(errorObj).length === 0) {
       console.log(form)
-    }else{
-      setError(errorObj)
     }
-  }
-
-  function inputOnChange(e){
-    let name = e.target.name
-    let value = e.target.value
-
-    onSubmit()
-    setForm({
-      ...form,
-      [name]: value
-    })
   }
 
   return (
@@ -87,7 +82,7 @@ export default function Register() {
               <label>
                 <div className="label-group">
                   <p>Họ và tên<span>*</span></p>
-                  <input type="text" value={form.name} onChange={inputOnChange} name='name' placeholder="Họ và tên bạn" />
+                  <input type="text" value={form.name} onChange={inputChange} name='name' placeholder="Họ và tên bạn" />
                 </div>
                 {
                   error.name && <p className="error-text">{error.name}</p>
@@ -96,7 +91,7 @@ export default function Register() {
               <label>
                 <div className="label-group">
                   <p>Số điện thoại<span>*</span></p>
-                  <input type="text" value={form.phone} onChange={inputOnChange} name='phone' placeholder="Số điện thoại" />
+                  <input type="text" value={form.phone} onChange={inputChange} name='phone' placeholder="Số điện thoại" />
                 </div>
                 {
                   error.phone && <p className="error-text">{error.phone}</p>
@@ -105,7 +100,7 @@ export default function Register() {
               <label>
                 <div className="label-group">
                   <p>Email<span>*</span></p>
-                  <input type="text" value={form.email} onChange={inputOnChange} name='email' placeholder="Email của bạn" />
+                  <input type="text" value={form.email} onChange={inputChange} name='email' placeholder="Email của bạn" />
                 </div>
                 {
                   error.email && <p className="error-text">{error.email}</p>
@@ -114,7 +109,7 @@ export default function Register() {
               <label>
                 <div className="label-group">
                   <p>URL Facebook<span>*</span></p>
-                  <input type="text" value={form.url} onChange={inputOnChange} name='url' placeholder="https://facebook.com" />
+                  <input type="text" value={form.url} onChange={inputChange} name='url' placeholder="https://facebook.com" />
                 </div>
                 {
                   error.url && <p className="error-text">{error.url}</p>
@@ -144,9 +139,12 @@ export default function Register() {
               </label>
               <label>
                 <div className="label-group">
-                  <p>Ý kiến cá nhân</p>
-                  <input type="text" name='note' value={form.note} onChange={inputOnChange} placeholder="Mong muốn cá nhân và lịch bạn có thể học." />
+                  <p>Ý kiến cá nhân<span>*</span></p>
+                  <input type="text" name='note' value={form.note} onChange={inputChange} placeholder="Mong muốn cá nhân và lịch bạn có thể học." />
                 </div>
+                {
+                  error.note && <p className="error-text">{error.note}</p>
+                }
               </label>
               <div className="btn main rect" onClick={onSubmit}>đăng ký</div>
             </div>

@@ -13,7 +13,7 @@ export default function useDelayLink() {
       }else{
         history.push(href)
       }
-    },500)
+    },100)
   }
 
   return delayLink

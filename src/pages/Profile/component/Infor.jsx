@@ -1,11 +1,15 @@
+import { useContext } from "react";
+import { Context } from "../../../App";
+
 export function Infor() {
+  let {login} = useContext(Context)
   return (
     <div className="tab1">
       <label>
         <p>
           Họ và tên<span>*</span>
         </p>
-        <input type="text" placeholder="Nguyễn Văn A" />
+        <input type="text" placeholder={login.name} />
       </label>
       <label>
         <p>
