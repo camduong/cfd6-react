@@ -1,16 +1,14 @@
-import { useContext } from "react";
-import { Redirect, useRouteMatch } from "react-router-dom";
-import { Context } from "../../App";
+import { useRouteMatch } from "react-router-dom";
+import useAuth from "../../hook/useAuth";
 import { TabTitle } from "./component";
 import { TabContent } from "./component/TabContent";
 
 
 
-export default function Profile(){
-  let {path} = useRouteMatch()
-  let {login} = useContext(Context)
-  if(!login) return <Redirect path='/' />
-  return(
+export default function Profile() {
+  let { path } = useRouteMatch()
+  let { login } = useAuth()
+  return (
     <main className="profile" id="main">
       <section>
         <div className="top-info">
@@ -23,8 +21,8 @@ export default function Profile(){
         </div>
         <div className="container">
           <div className="tab">
-            <TabTitle path={path}/>
-            <TabContent path={path}/>
+            <TabTitle path={path} />
+            <TabContent path={path} />
           </div>
         </div>
       </section>

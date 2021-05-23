@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { Context } from "../../../App";
+import useAuth from "../../../hook/useAuth";
 
 export function Infor() {
-  let {login} = useContext(Context)
+  let {login} = useAuth()
   return (
     <div className="tab1">
       <label>

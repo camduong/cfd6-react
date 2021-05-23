@@ -1,15 +1,14 @@
-import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { Context } from "../App";
+import useAuth from "../hook/useAuth";
 import useDelayLink from "../hook/useDelayLink";
 
 export function Header() {
-  function toggleNav(){
+  function toggleNav() {
     document.body.classList.toggle('menu-is-show')
   }
   let delayLink = useDelayLink()
-  let {login} = useContext(Context)
-  function Popup(){
+  let { login, handleLogout } = useAuth()
+  function Popup() {
     document.querySelector('.popup-login').style.display = 'flex'
   }
   return (
@@ -31,27 +30,27 @@ export function Header() {
           <div className="right">
             {
               login ?
-              <div className="have-login">
-                <div className="account">
-                  <Link onClick={delayLink} to="/profile" className="info">
-                    <div className="name">{login.name}</div>
-                    <div className="avatar">
-                      <img src={login.avatar} alt="" />
-                    </div>
-                  </Link>
+                <div className="have-login">
+                  <div className="account">
+                    <Link onClick={delayLink} to="/profile" className="info">
+                      <div className="name">{login.name}</div>
+                      <div className="avatar">
+                        <img src={login.avatar} alt="" />
+                      </div>
+                    </Link>
+                  </div>
+                  <div className="hamberger"></div>
+                  <div className="sub">
+                    <Link onClick={delayLink} to="/profile">Thông tin tài khoản</Link>
+                    <Link onClick={delayLink} to="/profile/mycourse">Khóa học của tôi</Link>
+                    <Link onClick={e => { e.preventDefault(); handleLogout() }} to="#">Đăng xuất</Link>
+                  </div>
                 </div>
-                <div className="hamberger"></div>
-                <div className="sub">
-                  <Link onClick={delayLink} to="/profile">Thông tin tài khoản</Link>
-                  <Link onClick={delayLink} to="/profile/mycourse">Khóa học của tôi</Link>
-                  <Link onClick={delayLink} to="#">Đăng xuất</Link>
+                :
+                <div className="not-login bg-none">
+                  <Link className='btn-register' onClick={Popup} to="#">Đăng nhập</Link>
+                  <Link className='btn main btn-open-login' onClick={Popup} to="#">Đăng ký</Link>
                 </div>
-              </div>
-              :
-              <div className="not-login bg-none">
-                <Link onClick={delayLink} className='btn-register' onClick={Popup} to="#">Đăng nhập</Link>
-                <Link onClick={delayLink} className='btn main btn-open-login' onClick={Popup} to="#">Đăng ký</Link>
-              </div>
             }
           </div>
         </div>
@@ -78,7 +77,7 @@ export function Header() {
           </li>
         </ul>
       </nav>
-      <div className="overlay_nav" onClick={toggleNav}/>
+      <div className="overlay_nav" onClick={toggleNav} />
     </>
   )
 }

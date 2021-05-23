@@ -20,13 +20,19 @@ export default function useFormValidate(initialForm, validate) {
   function check() {
     let errorObj = {}
     let { rule, message } = validate
-
+    if(!message) message = {}
     for (let i in rule) {
       let r = rule[i]
       let m = message[i] || {}
+
+      // check rule required input
       if (r.required && !form[i]?.trim()) {
-        errorObj[i] = m.required || 'Trường này không đc để trống'
+        errorObj[i] = m.required || 'Trường này không đc để trống';
+        console.log(r)
+        continue;
       }
+
+      // check rule pattern input
       if (r.pattern && form[i]) {
         // let pattern = r.pattern
         let { pattern } = r
@@ -35,6 +41,16 @@ export default function useFormValidate(initialForm, validate) {
         if (pattern === 'url') pattern = urlPattern
         if (!pattern?.test(form[i])) {
           errorObj[i] = m.pattern || 'Trường này không đúng định dạng'
+        }
+      }
+
+      // check rule pattern input
+      if(r.min){
+        if(form[i].length < r.min){
+          errorObj[i] = m?.min || `Trường này không được ít hơn ${r.min} ký tự`
+        }
+        if(form[i].length > r.max){
+          errorObj[i] = m?.max || `Trường này không được nhiều hơn ${r.max} ký tự`
         }
       }
     }
