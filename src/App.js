@@ -20,6 +20,7 @@ import FAQ from "./pages/FAQ";
 import './scss/style.sass';
 import PopupLogin from "./component/PopupLogin";
 import PrivateRoute from "./component/PrivateRoute";
+import Auth from "./service/auth";
 
 export let Context = React.createContext({})
 
@@ -37,21 +38,10 @@ function App() {
   }, [state.login])
 
   async function handleLogin(username, password) {
-    try{
-      let res = await fetch('http://cfd-reactjs.herokuapp.com/elearning/v4/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          username,
-          password
-        }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
+    try {
+      let res = await Auth.login({ username, password })
 
-      res = await res.json()
-
-      if(res.data){
+      if (res.data) {
         setState({
           ...state,
           login: res.data
@@ -59,7 +49,7 @@ function App() {
         return {
           success: true
         }
-      }else if(res.error){
+      } else if (res.error) {
         return {
           error: res.error
         }
@@ -69,7 +59,7 @@ function App() {
         // })
       }
     }
-    catch(err){
+    catch (err) {
 
     }
     // fetch('http://cfd-reactjs.herokuapp.com/elearning/v4/login',{
