@@ -1,16 +1,28 @@
+import { useDispatch, useSelector, useStore } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../hook/useAuth";
 import useDelayLink from "../hook/useDelayLink";
+import { logoutAction } from "../redux/actions/authAction";
 
 export function Header() {
   function toggleNav() {
     document.body.classList.toggle('menu-is-show')
   }
   let delayLink = useDelayLink()
-  let { login, handleLogout } = useAuth()
+  let { login } = useSelector(store => store.auth)
   function Popup() {
     document.querySelector('.popup-login').style.display = 'flex'
   }
+
+  let dispatch = useDispatch()
+  function logout(e) {
+    e.preventDefault();
+    dispatch(logoutAction())
+    console.log(logoutAction())
+  }
+
+  // let store = useSelector(state => state)
+
   return (
     <>
       <header id="header">
@@ -33,7 +45,7 @@ export function Header() {
                 <div className="have-login">
                   <div className="account">
                     <Link onClick={delayLink} to="/profile" className="info">
-                      <div className="name">{login.name}</div>
+                      <div className="name">{login.first_name}</div>
                       <div className="avatar">
                         <img src={login.avatar} alt="" />
                       </div>
@@ -43,7 +55,7 @@ export function Header() {
                   <div className="sub">
                     <Link onClick={delayLink} to="/profile">Thông tin tài khoản</Link>
                     <Link onClick={delayLink} to="/profile/mycourse">Khóa học của tôi</Link>
-                    <Link onClick={e => { e.preventDefault(); handleLogout() }} to="#">Đăng xuất</Link>
+                    <Link onClick={logout} to="#">Đăng xuất</Link>
                   </div>
                 </div>
                 :

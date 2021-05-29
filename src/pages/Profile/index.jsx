@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import useAuth from "../../hook/useAuth";
 import { TabTitle } from "./component";
@@ -7,7 +8,7 @@ import { TabContent } from "./component/TabContent";
 
 export default function Profile() {
   let { path } = useRouteMatch()
-  let { login } = useAuth()
+  let { login } = useSelector(store => store.auth)
   return (
     <main className="profile" id="main">
       <section>

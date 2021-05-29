@@ -1,10 +1,9 @@
-import { useState } from "react";
 import reactDom from "react-dom";
-import useAuth from "../hook/useAuth";
+import { useDispatch, useSelector } from "react-redux";
 import useFormValidate from "../hook/useFormValidate";
+import { loginAction } from "../redux/actions/authAction";
 
 export default function PopupLogin() {
-  let [loginError, setLoginError] = useState(null)
   let { inputChange, check, error, form } = useFormValidate({
     username: "",
     password: ""
@@ -21,26 +20,20 @@ export default function PopupLogin() {
       }
     }
   })
+  let dispatch = useDispatch()
+
   function close() {
     document.querySelector('.popup-login').style.display = 'none'
   }
-
-  let { handleLogin } = useAuth()
+  let {loginError} = useSelector(store => store.auth)
 
   async function loginHandle() {
     let error = check()
     if (Object.keys(error).length === 0) {
-      let res = await handleLogin(form.username, form.password)
-      if (res.success) {
-        close()
-      } else if (res.error) {
-        setLoginError(res.error)
-      }
-      // .then(res=>{
-      //   if(res){
-      //     close()
-      //   }
-      // })
+      dispatch(loginAction({
+        username: form.username,
+        password: form.password
+      }, close))
     }
   }
   return reactDom.createPortal(

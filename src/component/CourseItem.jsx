@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 
-export function CourseItem({status, img, title, desc, teacher, teach_ava }) {
+export function CourseItem({course_status, thumbnail, title, short_description, teacher, slug }) {
   return (
     <div className="col-md-4 course">
       <div className="wrap">
-        <Link to='/course/course-detail' className="cover">
-          <img src={img} alt="" />
+        <Link to={`/course/${slug}`} className="cover">
+          <img src={thumbnail.link} alt="" />
           {
-            status === "da-ket-thuc" ? <span className="badge b1">Đã kết thúc</span> :
+            course_status === "da-ket-thuc" ? <span className="badge b1">Đã kết thúc</span> :
             (
-              status === "dang-dien-ra" ? <span className='badge b2'>Đang diễn ra</span> :
+              course_status === "dang-dien-ra" ? <span className='badge b2'>Đang diễn ra</span> :
               <span className="badge b3">Sắp diễn ra</span>
             )
           }
@@ -30,14 +30,14 @@ export function CourseItem({status, img, title, desc, teacher, teach_ava }) {
         </Link>
         <div className="info">
           <Link to='/course/course-detail' className="name">{title}</Link>
-          <p className="des">{desc}</p>
+          <p className="des">{short_description}</p>
         </div>
         <div className="bottom">
           <div className="teacher">
             <div className="avatar">
-              <img src={teach_ava} alt="" />
+              <img src={teacher.avatar.link} alt="" />
             </div>
-            <div className="name">{teacher}</div>
+            <div className="name">{teacher.title}</div>
           </div>
           <div className="register-btn">Đăng Ký</div>
         </div>

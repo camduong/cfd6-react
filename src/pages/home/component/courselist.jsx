@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {CourseItem} from "../../../component/CourseItem";
 
-export default function CourseList() {
+export default function CourseList({online, offline}) {
   return (
     <React.Fragment>
       <section className="section-courseoffline">
@@ -15,54 +15,14 @@ export default function CourseList() {
             <h2 className="main-title">Khóa học Offline</h2>
           </div>
           <div className="list row">
-            <CourseItem
-              status="sap-dien-ra"
-              img="/assets/img/img1.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              status="da-ket-thuc"
-              img="/assets/img/img2.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              status="sap-dien-ra"
-              img="/assets/img/img3.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              status="dang-dien-ra"
-              img="/assets/img/img4.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              status="sap-dien-ra"
-              img="/assets/img/img5.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              status="sap-dien-ra"
-              img="/assets/img/img6.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
+            {
+              offline.map((value, i) =>
+                <CourseItem
+                  key={value.slug}
+                  {...value}
+                />
+              )
+            }
           </div>
           <div className="pt-3 text-center">
             <Link to='/course' className='btn main round'>Xem thêm</Link>
@@ -75,27 +35,14 @@ export default function CourseList() {
             <h2 className="main-title">Khóa học Online</h2>
           </div>
           <div className="list row">
-          <CourseItem
-              img="/assets/img/img2.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              img="/assets/img/img4.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
-            <CourseItem
-              img="/assets/img/img6.png"
-              title="Front-end căn bản"
-              desc="One of the best corporate fashion brands in Sydney"
-              teacher="Trần Nghĩa"
-              teach_ava="/assets/img/avt.png"
-            />
+            {
+              online.map((value, i) =>
+                <CourseItem
+                  key={value.slug}
+                  {...value}
+                />
+              )
+            }
           </div>
           <div className="text-deco">C</div>
         </div>

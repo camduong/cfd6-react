@@ -2,8 +2,8 @@ import { useState } from "react";
 
 // "i" ở cuối mỗi dòng để khỏi phân biệt viết hoa hay viết thường
 let emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i,
-    phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/i,
-    urlPattern = /^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/i
+  phonePattern = /(84|0[3|5|7|8|9])+([0-9]{8})\b/i,
+  urlPattern = /^(https?:\/\/)?(www\.)?facebook.com\/[a-zA-Z0-9(\.\?)?]/i
 
 export default function useFormValidate(initialForm, validate) {
   let [form, setForm] = useState(initialForm)
@@ -20,7 +20,7 @@ export default function useFormValidate(initialForm, validate) {
   function check() {
     let errorObj = {}
     let { rule, message } = validate
-    if(!message) message = {}
+    if (!message) message = {}
     for (let i in rule) {
       let r = rule[i]
       let m = message[i] || {}
@@ -45,11 +45,11 @@ export default function useFormValidate(initialForm, validate) {
       }
 
       // check rule pattern input
-      if(r.min){
-        if(form[i].length < r.min){
+      if (r.min) {
+        if (form[i].length < r.min) {
           errorObj[i] = m?.min || `Trường này không được ít hơn ${r.min} ký tự`
         }
-        if(form[i].length > r.max){
+        if (form[i].length > r.max) {
           errorObj[i] = m?.max || `Trường này không được nhiều hơn ${r.max} ký tự`
         }
       }

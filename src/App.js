@@ -1,6 +1,7 @@
 // common react
 import React, { useEffect, useState } from "react"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Provider } from 'react-redux'
 
 // common component
 import { Header, Footer, Page404 } from "./component";
@@ -21,6 +22,7 @@ import './scss/style.sass';
 import PopupLogin from "./component/PopupLogin";
 import PrivateRoute from "./component/PrivateRoute";
 import Auth from "./service/auth";
+import store from "./redux";
 
 export let Context = React.createContext({})
 
@@ -114,7 +116,8 @@ function App() {
     })
   }
   return (
-    <Context.Provider value={{ ...state, handleLogin, handleLogout }}>
+    <Provider store={store}>
+      {/* <Context.Provider value={{ ...state, handleLogin, handleLogout }}> */}
       <BrowserRouter>
         <div className="App">
           <PopupLogin />
@@ -134,7 +137,8 @@ function App() {
           <Footer />
         </div>
       </BrowserRouter>
-    </Context.Provider>
+      {/* </Context.Provider> */}
+    </Provider>
   );
 }
 
