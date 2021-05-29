@@ -33,7 +33,7 @@ const Auth = {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
-        "Content-Tpye": "application/json",
+        "Content-Type": "application/json",
         "Authorization": `Bearer ${token}`
       }
     }).then(res => tokenHandle(res, () => {
@@ -42,7 +42,7 @@ const Auth = {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
-          "Content-Tpye": "application/json",
+          "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`
         }
       }).then(res => res.json())

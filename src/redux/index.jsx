@@ -9,9 +9,8 @@ const middleWare = stores => next => action => {
 
   if (typeof action === 'function') {
     return action(stores.dispatch)
-  } else {
-    next(action)
   }
+  next(action)
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

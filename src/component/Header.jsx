@@ -44,12 +44,12 @@ export function Header() {
               login ?
                 <div className="have-login">
                   <div className="account">
-                    <Link onClick={delayLink} to="/profile" className="info">
-                      <div className="name">{login.first_name}</div>
+                    <div className="info">
+                      <div className="name">{login.name}</div>
                       <div className="avatar">
                         <img src={login.avatar} alt="" />
                       </div>
-                    </Link>
+                    </div>
                   </div>
                   <div className="hamberger"></div>
                   <div className="sub">
